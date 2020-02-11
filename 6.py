@@ -6,8 +6,8 @@ def timer(func):
         start_time = time.time()
         result = func(*args, **kwargs)
         end_time = time.time()
-        return f'''Результат: {result}. 
-               Время выполнения функции: {start_time - end_time}'''
+        print(f'Время выполнения функции - {end_time - start_time}')
+        return result
     return decorator
 
 
