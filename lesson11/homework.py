@@ -1,27 +1,49 @@
-"""
-1.
-Напишите итератор Fibonacci(n), который генерирует числа Фибоначчи до
-n включительно.
-"""
+class Fibonacci:
+    def __init__(self, n):
+        self.n = n
+        self.first = 0
+        self.second = 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        res = self.first
+        if res > self.n:
+            raise StopIteration
+        self.first, self.second = self.second, self.first + self.second
+        return res
 
 
-"""
-2.
-Напишите класс, объектом которого будет итератор производящий только
-чётные числа до n включительно.
-"""
+class Even:
+    def __init__(self, n):
+        self.n = n
+        self.start = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        res = self.start
+        if res > self.n:
+            raise StopIteration
+        self.start += 2
+        return res
 
 
-"""
-3.
-Напишите итератор factorials(n), генерирующий последовательность
-факториалов натуральных чисел.
-"""
+class Factorials:
+    def __init__(self, n):
+        self.n = n
+        self. start = 1
+        self.res = 1
 
+    def __iter__(self):
+        return self
 
-"""
-4.*
-Напишите итератор BinomialCoefficients(n), генерирующий последовательность
-биномиальных коэффициентов C0n,C1n,…,Cnn
-Запрещается использовать факториалы.
-"""
+    def __next__(self):
+        if self.start <= self.n:
+            self.res *= self.start
+            self.start += 1
+            return self.res
+        raise StopIteration
+
