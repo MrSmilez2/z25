@@ -23,8 +23,8 @@ BaseModel = declarative_base(bind=engine)
 
 class AppUsers(BaseModel):
     __tablename__ = 'app_users'
-    id = Column(Integer, primary_key=True),
-    users = Column(String, nullable=False),
+    id = Column(Integer, primary_key=True)
+    users = Column(String, nullable=False)
 
     def __str__(self):
         return f'{self.id}{self.users}'
@@ -33,8 +33,8 @@ class AppUsers(BaseModel):
 
 class Tests(BaseModel):
     __tablename__ = 'tests'
-    id = Column(Integer, primary_key=True),
-    number = Column(Integer, nullable=False),
+    id = Column(Integer, primary_key=True)
+    number = Column(Integer, nullable=False)
     test = Column(String, nullable=False)
 
     def __str__(self):
@@ -45,8 +45,8 @@ class Tests(BaseModel):
 
 class Questions(BaseModel):
     __tablename__ = 'questions'
-    id = Column(Integer, primary_key=True),
-    number = Column(Integer, nullable=False),
+    id = Column(Integer, primary_key=True)
+    number = Column(Integer, nullable=False)
     text = Column(String, nullable=False)
 
     def __str__(self):
@@ -57,10 +57,10 @@ class Questions(BaseModel):
 
 class TestsQuestions(BaseModel):
     __tablename__ = 'tests_questions'
-    id = Column(Integer, primary_key=True),
-    test_id = Column(Integer, ForeignKey('Tests.id'), primary_key=True)
-    question_id = Column(Integer, ForeignKey('Questions.id'), primary_key=True)
-    UniqueConstraint('test_id', 'question_id')
+    id = Column(Integer, primary_key=True)
+    test_id = Column(Integer, ForeignKey('tests.id'))
+    question_id = Column(Integer, ForeignKey('questions.id'))
+    __table_args__ = UniqueConstraint(('test_id', 'question_id'),)
 
     def __str__(self):
         return f'{self.id}{self.test_id}{self.question_id}'
@@ -70,9 +70,9 @@ class TestsQuestions(BaseModel):
 
 class Answers(BaseModel):
     __tablename__ = 'answers'
-    id = Column(Integer, primary_key=True),
-    text = Column(String, nullable=False),
-    is_correct = Column(Boolean, default=False),
+    id = Column(Integer, primary_key=True)
+    text = Column(String, nullable=False)
+    is_correct = Column(Boolean, default=False)
     question_id = Column(ForeignKey('questions.id'), nullable=False)
 
     def __str__(self):
@@ -84,10 +84,10 @@ class Answers(BaseModel):
 class UserAnswers(BaseModel):
     __tablename__ = 'user_answers'
     id = Column(Integer, primary_key=True),
-    test_quest_id = Column(ForeignKey('test_questions.id')),
-    user_id = Column(ForeignKey('app_users.id')),
+    test_quest_id = Column(ForeignKey('test_questions.id'))
+    user_id = Column(ForeignKey('app_users.id'))
     answer_id = Column(ForeignKey('answers.id'))
-    UniqueConstraint('test_quest_id', 'user_id')
+    __table_args__ = UniqueConstraint(('test_quest_id', 'user_id'),)
 
     def __str__(self):
         return f'{self.id}{self.test_quest_id}{self.user_id}{self.answer_id}'
