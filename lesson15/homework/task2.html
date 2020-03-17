@@ -1,0 +1,63 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    table{
+    border: 1px solid black;
+    width: 408px;
+    height: 140px;
+    font-size: 13px;
+    margin-left: 16px;
+    }
+    caption{
+    font-size: 13px;
+    }
+    td, th, tr {
+    border: 1px solid black;
+    }
+    .lastCell{
+    text-align: center;
+    }
+</style>
+<body>
+<a href="task1.html">Задача 1</a>
+<a href="task2.html">Задача 2</a>
+<a href="task3.html">Задача 3</a>
+<a href="task4.html">Задача 4*</a>
+<h3>2. Создайте таблицу как на рисунке </h3>
+<img class="task1" src="images/2.png">
+<hr/>
+<div>
+<!--    <h2 style="text-align:center">Добыча драгоценных камней</h2>-->
+    <table>
+         <caption>Добыча драгоценных камней</caption>
+        <tr>
+
+            <th></th>
+            <th>2010</th>
+            <th>2012</th>
+            <th>2014</th>
+        </tr>
+        <tr>
+            <td>Сапфиры</td>
+            <td rowspan="2">1483</td>
+            <td>4532</td>
+            <td>6743</td>
+        </tr>
+        <tr>
+            <td>Рубины</td>
+            <td>3835</td>
+            <td>7482</td>
+        </tr>
+        <tr>
+            <td>Алмазы</td>
+            <td>683</td>
+            <td class="lastCell" colspan="2">238</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
